@@ -2,12 +2,15 @@
 import unittest
 import time
 from BeautifulReport import BeautifulReport
+from common.configEmail import outlook
 
 if __name__ == "__main__":
     discover = unittest.defaultTestLoader.discover(r"C:\PycharmProjects\ReadExcel/testcases", pattern="test_*.py")
     result = BeautifulReport(discover)
     nowtime = time.strftime("%Y%m%d%H%M%S")
-    result.report(filename=f"report-" + nowtime, description="测试报告", report_dir="./reports")
+    # result.report(filename=f"report-" + nowtime, description="测试报告", report_dir="./reports")
+    name = result.report(filename=f"report-" + nowtime, description="测试报告", report_dir="./reports")
+    outlook()  # 发送邮件
 
 # # HTMLTestRunner报告方案：
 # import unittest, time
